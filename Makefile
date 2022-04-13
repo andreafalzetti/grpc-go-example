@@ -12,4 +12,5 @@ build:
 start:
 	./api
 
-dev: generate build start
+dev: generate build
+	air

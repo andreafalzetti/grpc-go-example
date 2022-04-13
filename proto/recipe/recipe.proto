@@ -22,6 +22,5 @@ message Recipe {
 message GetRequest {}
 
 message GetResponse {
-  string message = 1;
-  repeated Recipe recipes = 2;
+  repeated Recipe recipes = 1;
 }

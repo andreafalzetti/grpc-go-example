@@ -22,7 +22,28 @@ func NewServer() *server {
 }
 
 func (s *server) Get(ctx context.Context, in *recipepb.GetRequest) (*recipepb.GetResponse, error) {
-	return &recipepb.GetResponse{Message: "hello"}, nil
+	var recipes = []*recipepb.Recipe{
+		{
+			Id:   0,
+			Name: "Carbonara Pasta",
+		},
+		{
+			Id:   1,
+			Name: "Chicken Tikka Masala",
+		},
+		{
+			Id:   2,
+			Name: "Potato rösti cakes with sage leaves",
+		},
+		{
+			Id:   3,
+			Name: "Salad",
+		},
+	}
+
+	return &recipepb.GetResponse{
+		Recipes: recipes,
+	}, nil
 }
 
 func main() {
@@ -58,6 +79,7 @@ func main() {
 	}
 
 	gwmux := runtime.NewServeMux()
+
 	// Register Recipes API
 	err = recipepb.RegisterRecipesHandler(context.Background(), gwmux, conn)
 	if err != nil {

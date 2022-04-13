@@ -17,3 +17,4 @@
 # project related
 /api
 proto/recipe/*.go
+tmp
