@@ -13,9 +13,8 @@ github:
 tasks:
   - name: Setup
     openMode: split-left
-    before: |
-      make generate
     init: |
+      make generate
       make build
     command: make start
   - openMode: split-right
