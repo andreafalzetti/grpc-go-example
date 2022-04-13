@@ -1,0 +1,30 @@
+image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - streetsidesoftware.code-spell-checker
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+
+tasks:
+  - name: Setup
+    openMode: split-left
+    before: |
+      eval "$(gp env -e | grep NPM_TOKEN)"
+    init: |
+      cd app
+      npm install
+      npm run env:dev
+    command: cd app && npm start
+  - openMode: split-right
+    command: zsh
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 3000
+    onOpen: open-browser
+    visibility: public

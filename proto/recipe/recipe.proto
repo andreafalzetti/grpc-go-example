@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package recipe;
+
+option go_package = "github.com/andreafalzetti/grpc-go-example";
+
+// import "google/api/http.proto";
+
+service Recipes {
+  rpc Get(GetRequest) returns (GetResponse) {
+    // option (google.api.http) = {
+    //   get : "/recipes"
+    // };
+  }
+}
+
+message Recipe {
+  int32 id = 1;
+  string name = 2;
+}
+
+message GetRequest {}
+message GetResponse { repeated Recipe recipes = 1; }
