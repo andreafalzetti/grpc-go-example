@@ -19,9 +19,13 @@ tasks:
     command: make start
   - openMode: split-right
     command: |
-      gp await-port 8080
+      gp await-port 3000
+      http http://0.0.0.0:8090/recipes
 
 ports:
   - port: 8080
+    onOpen: ignore
+    visibility: public
+  - port: 3000
     onOpen: ignore
     visibility: public

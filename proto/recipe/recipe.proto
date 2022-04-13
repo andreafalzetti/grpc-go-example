@@ -4,13 +4,13 @@ package recipe;
 
 option go_package = "github.com/andreafalzetti/grpc-go-example";
 
-// import "google/api/http.proto";
+import "google/api/annotations.proto";
 
 service Recipes {
   rpc Get(GetRequest) returns (GetResponse) {
-    // option (google.api.http) = {
-    //   get : "/recipes"
-    // };
+    option (google.api.http) = {
+      get : "/recipes"
+    };
   }
 }
 

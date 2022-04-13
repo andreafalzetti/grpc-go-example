@@ -15,5 +15,5 @@
 # vendor/
 
 # project related
-api
+/api
 proto/recipe/*.go

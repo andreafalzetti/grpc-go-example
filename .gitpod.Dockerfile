@@ -6,7 +6,7 @@ USER root
     
 # Update Linux packages
 RUN apt-get update && \
-    apt-get install -y protobuf-compiler
+    apt-get install -y protobuf-compiler httpie
 
 # Switch to the Gitpod user
 USER gitpod
