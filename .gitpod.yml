@@ -14,17 +14,15 @@ tasks:
   - name: Setup
     openMode: split-left
     before: |
-      eval "$(gp env -e | grep NPM_TOKEN)"
+      make generate
     init: |
-      cd app
-      npm install
-      npm run env:dev
-    command: cd app && npm start
+      make build
+    command: make start
   - openMode: split-right
-    command: zsh
+    command: |
+      gp await-port 8080
 
-# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
-  - port: 3000
-    onOpen: open-browser
+  - port: 8080
+    onOpen: ignore
     visibility: public

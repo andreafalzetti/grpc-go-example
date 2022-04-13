@@ -9,5 +9,5 @@ build:
 	go mod tidy && \
 	go build -o api main.go
 
-run:
+start:
 	./api

@@ -20,4 +20,8 @@ message Recipe {
 }
 
 message GetRequest {}
-message GetResponse { repeated Recipe recipes = 1; }
+
+message GetResponse {
+  string message = 1;
+  repeated Recipe recipes = 2;
+}
