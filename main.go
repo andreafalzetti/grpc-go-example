@@ -10,39 +10,39 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	recipepb "github.com/andreafalzetti/grpc-go-example/proto/recipe"
+	chatpb "github.com/andreafalzetti/grpc-go-example/proto/chat"
 )
 
 type server struct {
-	recipepb.UnimplementedRecipesServer
+	chatpb.UnimplementedChatRoomsServer
 }
 
 func NewServer() *server {
 	return &server{}
 }
 
-func (s *server) Get(ctx context.Context, in *recipepb.GetRequest) (*recipepb.GetResponse, error) {
-	var recipes = []*recipepb.Recipe{
+func (s *server) Get(ctx context.Context, in *chatpb.GetRequest) (*chatpb.GetResponse, error) {
+	var ChatRooms = []*chatpb.ChatRoom{
 		{
 			Id:   0,
-			Name: "Carbonara Pasta",
+			Name: "Coding",
 		},
 		{
 			Id:   1,
-			Name: "Chicken Tikka Masala",
+			Name: "Travel",
 		},
 		{
 			Id:   2,
-			Name: "Potato rösti cakes with sage leaves",
+			Name: "Investing",
 		},
 		{
 			Id:   3,
-			Name: "Salad",
+			Name: "Gaming",
 		},
 	}
 
-	return &recipepb.GetResponse{
-		Recipes: recipes,
+	return &chatpb.GetResponse{
+		Rooms: ChatRooms,
 	}, nil
 }
 
@@ -56,8 +56,8 @@ func main() {
 	// Create a gRPC server object
 	s := grpc.NewServer()
 
-	// Attach the Recipes service to the server
-	recipepb.RegisterRecipesServer(s, &server{})
+	// Attach the Chat service to the server
+	chatpb.RegisterChatRoomsServer(s, &server{})
 
 	// Serve gRPC Server
 	log.Println("Serving gRPC on 0.0.0.0:8080")
@@ -80,8 +80,8 @@ func main() {
 
 	gwmux := runtime.NewServeMux()
 
-	// Register Recipes API
-	err = recipepb.RegisterRecipesHandler(context.Background(), gwmux, conn)
+	// Register Chat API
+	err = chatpb.RegisterChatRoomsHandler(context.Background(), gwmux, conn)
 	if err != nil {
 		log.Fatalln("Failed to register gateway:", err)
 	}

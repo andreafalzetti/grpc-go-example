@@ -14,13 +14,12 @@ tasks:
   - name: Setup
     openMode: split-left
     init: |
-      make generate
-      make build
+      make dev
     command: make start
   - openMode: split-right
     command: |
       gp await-port 3000
-      http http://0.0.0.0:8090/recipes
+      http http://0.0.0.0:3000/rooms
 
 ports:
   - port: 8080

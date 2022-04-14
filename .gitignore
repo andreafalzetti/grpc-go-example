@@ -16,5 +16,6 @@
 
 # project related
 /api
-proto/recipe/*.go
+proto/*/*.pb.go
+proto/*/*.gw.go
 tmp

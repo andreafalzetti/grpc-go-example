@@ -29,5 +29,7 @@ message GetRequest {}
 
 message GetResponse { repeated ChatRoom rooms = 1; }
 
-message JoinRequest {}
+message JoinRequest {
+  int32 id = 1;
+}
 message JoinResponse {}
