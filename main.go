@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -13,6 +14,25 @@ import (
 	chatpb "github.com/andreafalzetti/grpc-go-example/proto/chat"
 )
 
+var chatRooms = []*chatpb.ChatRoom{
+	{
+		Id:   0,
+		Name: "Coding",
+	},
+	{
+		Id:   1,
+		Name: "Travel",
+	},
+	{
+		Id:   2,
+		Name: "Investing",
+	},
+	{
+		Id:   3,
+		Name: "Gaming",
+	},
+}
+
 type server struct {
 	chatpb.UnimplementedChatRoomsServer
 }
@@ -21,28 +41,26 @@ func NewServer() *server {
 	return &server{}
 }
 
-func (s *server) Get(ctx context.Context, in *chatpb.GetRequest) (*chatpb.GetResponse, error) {
-	var ChatRooms = []*chatpb.ChatRoom{
-		{
-			Id:   0,
-			Name: "Coding",
-		},
-		{
-			Id:   1,
-			Name: "Travel",
-		},
-		{
-			Id:   2,
-			Name: "Investing",
-		},
-		{
-			Id:   3,
-			Name: "Gaming",
-		},
-	}
-
+func (s *server) Get(ctx context.Context, req *chatpb.GetRequest) (*chatpb.GetResponse, error) {
 	return &chatpb.GetResponse{
-		Rooms: ChatRooms,
+		Rooms: chatRooms,
+	}, nil
+}
+
+func (s *server) Create(ctx context.Context, req *chatpb.CreateRequest) (*chatpb.CreateResponse, error) {
+	fmt.Println("new room created: ", req)
+
+	newRoomId := int32(len(chatRooms))
+	newRoomName := req.GetName()
+
+	chatRooms = append(chatRooms, &chatpb.ChatRoom{
+		Id:   newRoomId,
+		Name: newRoomName,
+	})
+
+	return &chatpb.CreateResponse{
+		Id:   newRoomId,
+		Name: newRoomName,
 	}, nil
 }
 

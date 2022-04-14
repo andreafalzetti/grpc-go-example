@@ -12,4 +12,12 @@ I am working on the [GitPod](https://wwwgitpod.io/) codebase which uses `gRPC` a
 
 - [grpc.io/docs/languages/go/basics/](https://grpc.io/docs/languages/go/basics/)
 - [grpc-ecosystem.github.io/grpc-gateway/](https://grpc-ecosystem.github.io/grpc-gateway/)
-- [◊developers.google.com/protocol-buffers/docs/overview](https://developers.google.com/protocol-buffers/docs/overview)
+- [developers.google.com/protocol-buffers/docs/overview](https://developers.google.com/protocol-buffers/docs/overview)
+
+## Usage
+
+To launch this, [just open in Gitpod]((https://gitpod.io/#https://github.com/andreafalzetti/grpc-go-example))
+
+## Development
+
+To contribute, [just open in Gitpod]((https://gitpod.io/#https://github.com/andreafalzetti/grpc-go-example))

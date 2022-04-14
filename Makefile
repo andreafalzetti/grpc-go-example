@@ -1,3 +1,6 @@
+API_URL=http://0.0.0.0:3000
+HEADERS=Content-Type:application/json
+
 install:
 	go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway@latest
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
@@ -20,3 +23,10 @@ start:
 
 dev: install generate build
 	air
+
+# Commands to interact with the API
+get-rooms:
+	http ${API_URL}/rooms
+
+create-room:
+	echo '{"name": "test"}' | http POST ${API_URL}/rooms ${HEADERS}
