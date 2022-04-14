@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "github.com/andreafalzetti/grpc-go-example";
+
+import "google/api/annotations.proto";
+
+service ChatRooms {
+  rpc Get(GetRequest) returns (GetResponse) {
+    option (google.api.http) = {
+      get : "/rooms"
+    };
+  }
+
+  rpc Join(JoinRequest) returns (stream JoinResponse) {
+    option (google.api.http) = {
+      post : "/rooms/{id}/join"
+    };
+  }
+}
+
+message ChatRoom {
+  int32 id = 1;
+  string name = 2;
+}
+
+message GetRequest {}
+
+message GetResponse { repeated ChatRoom rooms = 1; }
+
+message JoinRequest {}
+message JoinResponse {}
