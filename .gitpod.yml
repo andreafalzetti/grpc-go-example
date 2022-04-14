@@ -14,7 +14,9 @@ tasks:
   - name: Setup
     openMode: split-left
     init: |
-      make dev
+      make install
+      make generate
+      make build
     command: make start
   - openMode: split-right
     command: |
